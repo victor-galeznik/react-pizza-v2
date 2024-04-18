@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import { SearchContext } from '../App';
 import { useDispatch, useSelector } from 'react-redux';
@@ -32,12 +33,13 @@ const Home = () => {
 
     setIsLoading(true);
 
-    fetch(`${URL}${category}&sortBy=${sortBy}&order=${order}${search}`)
-      .then((res) => res.json())
-      .then((arr) => {
-        setItems(arr);
+    axios
+      .get(`${URL}${category}&sortBy=${sortBy}&order=${order}${search}`)
+      .then((res) => {
+        setItems(res.data);
         setIsLoading(false);
       });
+
     window.scrollTo(0, 0);
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
