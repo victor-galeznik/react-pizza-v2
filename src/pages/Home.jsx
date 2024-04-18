@@ -26,8 +26,9 @@ const Home = () => {
 
   useEffect(() => {
     const URL = `https://661d481698427bbbef01578f.mockapi.io/items?page=${currentPage}&limit=4&`;
-    const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';
+
     const sortBy = sort.sortProperty.replace('-', '');
+    const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';
     const category = categoryId > 0 ? `category=${categoryId}` : '';
     const search = searchValue ? `&search=${searchValue}` : '';
 
@@ -38,6 +39,11 @@ const Home = () => {
       .then((res) => {
         setItems(res.data);
         setIsLoading(false);
+      })
+      .catch((error) => {
+        // console.error('Ошибка при получении данных:', error);
+        setIsLoading(false);
+        setItems([]); // Установить items как пустой массив, когда результаты не найдены
       });
 
     window.scrollTo(0, 0);
