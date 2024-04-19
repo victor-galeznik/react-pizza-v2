@@ -9,8 +9,7 @@ import { Provider } from 'react-redux';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  // <BrowserRouter basename={`/${REPO_NAME}/`}>
-  <BrowserRouter>
+  <BrowserRouter basename={`/${REPO_NAME}/`}>
     <Provider store={store}>
       <App />
     </Provider>
