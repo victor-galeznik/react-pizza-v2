@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const fetchPizzas = createAsyncThunk(
   'pizza/fetchPizzasStatus',
-  async (params) => {
+  async (params, thunkApi) => {
     const { sortBy, order, category, search, currentPage, URL } = params;
     const { data } = await axios.get(
       `${URL}${category}&sortBy=${sortBy}&order=${order}${search}`,
@@ -33,15 +33,19 @@ const pizzaSlice = createSlice({
         state.items = [];
       })
       .addCase(fetchPizzas.fulfilled, (state, action) => {
+        console.log(action);
         state.items = action.payload;
         state.status = 'success';
       })
-      .addCase(fetchPizzas.rejected, (state) => {
+      .addCase(fetchPizzas.rejected, (state, action) => {
+        console.log(action);
         state.status = 'error';
         state.items = [];
       });
   },
 });
+
+export const selectPizzaData = (state) => state.pizza;
 
 export const { setItems } = pizzaSlice.actions;
 
