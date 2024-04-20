@@ -28,7 +28,6 @@ function Sort() {
       const path = event.composedPath();
       if (!path.includes(sortRef.current)) {
         setOpen(false);
-        console.log('click');
       }
     };
 
