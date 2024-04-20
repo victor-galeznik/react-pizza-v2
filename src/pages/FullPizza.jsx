@@ -1,0 +1,40 @@
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+
+const FullPizza = () => {
+  const [pizza, setPizza] = useState();
+  const { id } = useParams();
+
+  useEffect(() => {
+    async function fetchPizza() {
+      try {
+        const { data } = await axios.get(
+          'https://661d481698427bbbef01578f.mockapi.io/items/' + id,
+        );
+        setPizza(data);
+      } catch (error) {
+        alert('Ошибка при получении пиццы');
+      }
+    }
+
+    fetchPizza();
+  }, []);
+
+  if (!pizza) {
+    return 'Загрузка...';
+  }
+
+  return (
+    <div className="container">
+      <img
+        src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+        alt="пицца"
+      />
+      <h2>{pizza.title}</h2>
+      <h4>{pizza.price} P</h4>
+    </div>
+  );
+};
+
+export default FullPizza;
