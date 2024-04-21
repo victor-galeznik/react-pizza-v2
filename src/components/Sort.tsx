@@ -21,7 +21,7 @@ const Sort: React.FC = () => {
   const sort = useSelector(selectSort);
   const sortRef = useRef<HTMLDivElement>(null);
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   const onClickListItem = (obj: SortItem) => {
     dispatch(setSort(obj));
@@ -29,9 +29,8 @@ const Sort: React.FC = () => {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      const path = event.composedPath();
-      if (!path.includes(sortRef.current)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (sortRef.current && !event.composedPath().includes(sortRef.current)) {
         setOpen(false);
       }
     };

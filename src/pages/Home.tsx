@@ -20,8 +20,8 @@ import { fetchPizzas, selectPizzaData } from '../redux/slices/pizzaSlice';
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isSearch = useRef(false);
-  const isMounted = useRef(false);
+  const isSearch = useRef<boolean>(false);
+  const isMounted = useRef<boolean>(false);
 
   const { items, status } = useSelector(selectPizzaData);
   const { categoryId, sort, currentPage, searchValue } =
