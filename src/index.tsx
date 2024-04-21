@@ -11,7 +11,8 @@ if (rootElem) {
   const root = ReactDOM.createRoot(rootElem);
 
   root.render(
-    <BrowserRouter basename={`/${REPO_NAME}/`}>
+    // <BrowserRouter basename={`/${REPO_NAME}/`}>
+    <BrowserRouter>
       <Provider store={store}>
         <App />
       </Provider>

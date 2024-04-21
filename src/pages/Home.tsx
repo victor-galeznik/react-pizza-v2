@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import React, { useEffect, useRef } from 'react';
 import qs from 'qs';
 
-import { SearchContext } from '../App';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectFilter,
@@ -12,14 +10,14 @@ import {
 } from '../redux/slices/filterSlice';
 import { Link, useNavigate } from 'react-router-dom';
 
-import Categories from './../components/Categories';
-import Sort, { sortList } from './../components/Sort';
-import Skeleton from './../components/PizzaBlock/Skeleton';
-import PizzaBlock from './../components/PizzaBlock/index';
+import Categories from '../components/Categories';
+import Sort, { sortList } from '../components/Sort';
+import Skeleton from '../components/PizzaBlock/Skeleton';
+import PizzaBlock from '../components/PizzaBlock/index';
 import Pagination from '../components/Pagination';
 import { fetchPizzas, selectPizzaData } from '../redux/slices/pizzaSlice';
 
-const Home = () => {
+const Home: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isSearch = useRef(false);
@@ -29,11 +27,11 @@ const Home = () => {
   const { categoryId, sort, currentPage, searchValue } =
     useSelector(selectFilter);
 
-  const onChangeCategory = (id) => {
+  const onChangeCategory = (id: number) => {
     dispatch(setCategoryId(id));
   };
 
-  const onChangePage = (number) => {
+  const onChangePage = (number: number) => {
     dispatch(setCurrentPage(number));
   };
 
@@ -46,6 +44,7 @@ const Home = () => {
     const search = searchValue ? `&search=${searchValue}` : '';
 
     dispatch(
+      // @ts-ignore
       fetchPizzas({ sortBy, order, category, search, currentPage, URL }),
     );
 
@@ -96,7 +95,7 @@ const Home = () => {
     isSearch.current = false;
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
-  const pizzas = items.map((obj) => (
+  const pizzas = items.map((obj: any) => (
     <Link to={`/pizza/${obj.id}`} key={obj.id}>
       <PizzaBlock {...obj} />
     </Link>
