@@ -233,6 +233,28 @@ body {
             display: none;
           }
         }
+
+        &:disabled {
+          opacity: 0.4;
+          cursor: default;
+          border-color: #7b7b7b;
+
+          &:active {
+            transform: none;
+          }
+
+          &:hover {
+            background-color: transparent;
+
+            svg path {
+              fill: #7b7b7b;
+            }
+          }
+
+          svg path {
+            fill: #7b7b7b;
+          }
+        }
       }
 
       b {
