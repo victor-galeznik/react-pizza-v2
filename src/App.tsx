@@ -1,11 +1,16 @@
-import React, { Suspense, lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
+import Loadable from 'react-loadable';
 import Home from './pages/Home';
 import MainLayout from './layouts/MainLayout';
 import './scss/app.scss';
 
-const Cart = lazy(() => import(/* webpackChunkName: "Cart" */ './pages/Cart'));
+const Cart = Loadable({
+  loader: () => import(/* webpackChunkName: "Cart" */ './pages/Cart'),
+  loading: () => <div>Идёт загрузка</div>,
+});
+
 const FullPizza = lazy(
   () => import(/* webpackChunkName: "FullPizza" */ './pages/FullPizza'),
 );
@@ -18,14 +23,7 @@ function App() {
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route path="" element={<Home />} />
-        <Route
-          path="cart"
-          element={
-            <Suspense fallback={<div>Идёт загрузка</div>}>
-              <Cart />
-            </Suspense>
-          }
-        />
+        <Route path="cart" element={<Cart />} />
         <Route
           path="pizza/:id"
           element={
