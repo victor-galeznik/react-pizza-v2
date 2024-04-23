@@ -1,21 +1,19 @@
 import React, { useCallback, useEffect, useRef } from 'react';
+
 import qs from 'qs';
-
 import { useSelector } from 'react-redux';
-
 import { Link, useNavigate } from 'react-router-dom';
 
 import Categories from '../components/Categories';
-import Sort, { sortList } from '../components/Sort';
-import Skeleton from '../components/PizzaBlock/Skeleton';
-import PizzaBlock from '../components/PizzaBlock/index';
 import Pagination from '../components/Pagination';
-
-import { useAppDispatch } from '../redux/store';
+import PizzaBlock from '../components/PizzaBlock/index';
+import Skeleton from '../components/PizzaBlock/Skeleton';
+import Sort, { sortList } from '../components/Sort';
 import { selectFilter } from '../redux/filter/selectors';
 import { setCategoryId, setCurrentPage } from '../redux/filter/slice';
 import { fetchPizzas } from '../redux/pizza/asyncActions';
 import { selectPizzaData } from '../redux/pizza/selectors';
+import { useAppDispatch } from '../redux/store';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -118,19 +116,19 @@ const Home: React.FC = () => {
   ));
 
   return (
-    <div className="container">
-      <div className="content__top">
+    <div className='container'>
+      <div className='content__top'>
         <Categories value={categoryId} onChangeCategory={onChangeCategory} />
         <Sort value={sort} />
       </div>
-      <h2 className="content__title">Все пиццы</h2>
+      <h2 className='content__title'>Все пиццы</h2>
       {status === 'error' ? (
-        <div className="content__error-info">
+        <div className='content__error-info'>
           <h2>Произошла ошибка 😥</h2>
           <p>Не удалось получить питсы</p>
         </div>
       ) : (
-        <div className="content__items">
+        <div className='content__items'>
           {status === 'loading' ? skeletons : pizzas}
         </div>
       )}

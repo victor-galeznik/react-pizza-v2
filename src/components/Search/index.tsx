@@ -1,12 +1,12 @@
 import React, { useCallback, useRef, useState } from 'react';
+
 import debounce from 'lodash.debounce';
-
-import pizzaSvg from './img/pizza.svg';
-import clearSvg from './img/clear.svg';
-
-import styles from './Search.module.scss';
 import { useDispatch } from 'react-redux';
+
 import { setSearchValue } from '../../redux/filter/slice';
+import clearSvg from './img/clear.svg';
+import pizzaSvg from './img/pizza.svg';
+import styles from './Search.module.scss';
 
 const Search: React.FC = () => {
   const dispatch = useDispatch();
@@ -39,21 +39,21 @@ const Search: React.FC = () => {
 
   return (
     <div className={styles.root}>
-      <img className={styles.pizzaIcon} src={pizzaSvg} alt="pizza" />
+      <img className={styles.pizzaIcon} src={pizzaSvg} alt='pizza' />
       <input
         ref={inputRef}
         onChange={onChangeInput}
         value={value}
         className={styles.input}
-        placeholder="Поиск"
-        type="text"
+        placeholder='Поиск'
+        type='text'
       />
       {value && (
         <img
           onClick={onClickClear}
           className={styles.clearIcon}
           src={clearSvg}
-          alt="close"
+          alt='close'
         />
       )}
     </div>

@@ -1,9 +1,11 @@
-import { Suspense, lazy } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 
 import Loadable from 'react-loadable';
-import Home from './pages/Home';
+import { Route, Routes } from 'react-router-dom';
+
 import MainLayout from './layouts/MainLayout';
+import Home from './pages/Home';
+
 import './scss/app.scss';
 
 const Cart = Loadable({
@@ -21,11 +23,11 @@ const NotFound = lazy(
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<MainLayout />}>
-        <Route path="" element={<Home />} />
-        <Route path="cart" element={<Cart />} />
+      <Route path='/' element={<MainLayout />}>
+        <Route path='' element={<Home />} />
+        <Route path='cart' element={<Cart />} />
         <Route
-          path="pizza/:id"
+          path='pizza/:id'
           element={
             <Suspense fallback={<div>Идёт загрузка</div>}>
               <FullPizza />
@@ -33,7 +35,7 @@ function App() {
           }
         />
         <Route
-          path="*"
+          path='*'
           element={
             <Suspense fallback={<div>Идёт загрузка</div>}>
               <NotFound />

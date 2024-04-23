@@ -17,7 +17,7 @@ const categories = [
 const Categories: React.FC<CategoriesProps> = React.memo(
   ({ value, onChangeCategory }) => {
     return (
-      <div className="categories">
+      <div className='categories'>
         <ul>
           {categories.map((categoryName, index) => (
             <li
