@@ -11,7 +11,8 @@ body {
   width: calc(100vw - 100px);
   height: 100%;
   background-color: #fff;
-  margin: 50px auto;
+  margin: 0 auto;
+  margin-top: 30px;
   border-radius: 10px;
   max-width: 1400px;
 
@@ -24,6 +25,7 @@ body {
 
 .content {
   padding: 40px 0;
+  padding-top: 0;
 
   &__error-info {
     margin: 100px auto;
@@ -44,8 +46,8 @@ body {
   &__title {
     font-size: 38px;
     font-weight: 800;
-    margin-top: 60px;
-    margin-bottom: 50px;
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
 
   &__items {
